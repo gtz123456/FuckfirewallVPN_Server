@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>
+        <span style="font-weight:normal">Android</span>
+        <span style="font-family:Calibri; font-weight:normal">系统</span>
+        <span style="font-weight:normal">V2rayNG</span>
+        <span style="font-family:Calibri; font-weight:normal">客户端配置指南</span>
+    </h1>
+    <h2>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">第一步：下载安装</span>
+        <span style="font-weight:normal; font-style:normal">V2rayNG</span>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">客户端</span>
+    </h2>
+    <p>
+        <a href="https://github.com/2dust/v2rayNG/releases/download/1.8.5/v2rayNG_1.8.5.apk" style="text-decoration:none">
+            <span class="Hyperlink">从github下载(推荐)</span>
+        </a>
+    </p>
+    <p>
+        <span class="Hyperlink">如果无法访问github，使用此链接下载</span>
+    </p>
+    <div>
+        <hr size="2" align="left" style="width:100%"/>
+    </div>
+    <h2>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">第二步：获取节点并导入</span>
+        <span style="font-weight:normal; font-style:normal">V2rayNG</span>
+    </h2>
+    <h4>
+        <span style="font-weight:normal">方法一：节点二维码方式（推荐）</span>
+    </h4>
+    <p>
+        <span>在用户界面中找到“我的账号”， 在服务器一栏中选择要使用的节点，准备好右侧的二维码供手机扫描</span>
+        <br/>
+        <img src="{{ url_for('static', filename='images/getQRCode.png') }}" width="600" height="450" alt="getQRCode" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+        <span style="-aw-import:ignore">&#xa0;</span>
+    </p>
+    <p>
+        <span>在手机打开V2rayNG，点击屏幕上方的加号</span>
+        <br/>
+        <img src="{{ url_for('static', filename='images/V2rayNGDashboard.png') }}" width="350" height="700" alt="V2rayNG界面" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+        <span style="-aw-import:ignore">&#xa0;</span>
+    </p>
+    <p>
+        <span>在出现的菜单中选择Import config from QRcode</span>
+        <br/>
+        <img src="{{ url_for('static', filename='images/V2rayNGAdd.png') }}" width="350" height="700" alt="V2rayNG添加" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+        <span style="-aw-import:ignore">&#xa0;</span>
+    </p>
+    <h4>
+        <span style="font-weight:normal">方法二：节点链接方式 (如果你选择用二维码导入，<a href="#thirdstep">点击此处跳转到下一步</a>)</span>
+    </h4>
+    <p>
+        <span>在用户界面中找到“我的账号”， 在服务器一栏中选择要使用的节点，复制节点链接</span>
+        <br/>
+        <img src="{{ url_for('static', filename='images/getVmess.png') }}" width="600" height="450" alt="getVmess" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+        <span style="-aw-import:ignore">&#xa0;</span>
+    </p>
+    <p>
+        <span>在手机上将链接复制到剪贴板，在手机打开V2rayNG，点击屏幕上方的加号</span>
+        <br/>
+        <img src="{{ url_for('static', filename='images/V2rayNGDashboard.png') }}" width="350" height="700" alt="V2rayNG界面" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+        <span style="-aw-import:ignore">&#xa0;</span>
+    </p>
+    <p>
+        <span>在出现的菜单中选择Import config from Clipboard</span>
+        <br/>
+        <img src="{{ url_for('static', filename='images/V2rayNGAdd.png') }}" width="350" height="700" alt="V2rayNG添加" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+        <span style="-aw-import:ignore">&#xa0;</span>
+    </p>
+    <div>
+        <hr size="2" align="left" style="width:100%"/>
+    </div>
+    <p>
+
+    </p>
+    <h2>
+        <span id="thirdstep" style="font-family:Calibri; font-weight:normal; font-style:normal">第三步：启动代理并测试</span>
+    </h2>
+    <p>
+        <span>客户端右下角的V字即为开关，将其点亮，点亮后点击“tap to check connection”进行测试</span>
+    </p>
+    <p>
+        <span>如果成功连通，将提示success</span>
+        <br/>
+        <img src="{{ url_for('static', filename='images/V2rayNGTest.png') }}" width="350" height="700" alt="V2rayNGTest" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+        <span style="-aw-import:ignore">&#xa0;</span>
+    </p>
+</div>
+{% endblock %}

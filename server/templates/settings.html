@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Settings</h3>
+<form method="post">
+    New password <input type="text" name="password" autocomplete="off" required">
+    <input type="hidden" name="form_type" value="password">
+    <input class="btn" type="submit" name="submit" value="Save">
+</form>
+<br/>
+<h3>Current balance: {{ balance }}</h3>
+<br/>
+<h3>Recharge</h3>
+<form method="post">
+    Amount <input type="text" name="amount" autocomplete="off" required">
+    <input type="hidden" name="form_type" value="recharge">
+    <input class="btn" type="submit" name="submit" value="Save">
+</form>
+{% endblock %}

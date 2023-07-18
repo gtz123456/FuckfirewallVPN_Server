@@ -1,0 +1,61 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "listen": "127.0.0.1",
+            "port": 1080,
+            "protocol": "socks",
+            "settings": {
+                "udp": true
+            }
+        },
+        {
+            "listen": "127.0.0.1",
+            "port": 1081,
+            "protocol": "http"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "209.141.49.64",
+                        "port": 443,
+                        "users": [
+                            {
+                                "id": "UUID",
+                                "encryption": "none",
+                                "flow": "xtls-rprx-vision"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false,
+                    "fingerprint": "chrome",
+                    "serverName": "www.amazon.com",
+                    "publicKey": "o8arp1o5BcU16-XjWw_HthBqQB4XqbK194kLgcCRqQ4",
+                    "shortId": "78985179e30d4fc6",
+                    "spiderX": ""
+                }
+            },
+            "tag": "proxy"
+        },
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ]
+}

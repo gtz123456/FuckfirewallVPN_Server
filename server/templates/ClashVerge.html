@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>
+        <span style="font-weight:normal">Clash Verge</span>
+        <span style="font-family:Calibri; font-weight:normal">客户端配置指南</span>
+    </h1>
+    <p>
+        <span>该客户端支持Windows，MacOS，Linux三种系统，且作者定期维护，强烈推荐</span>
+    </p>
+    <h2>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">第一步：下载</span>
+        <span style="font-weight:normal; font-style:normal">clash verde</span>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">客户端</span>
+    </h2>
+    <p>
+        <span>下载链接：</span>
+    </p>
+    <p>
+        <span>Windows：&nbsp;</span>
+        <a href="https://github.com/zzzgydi/clash-verge/releases/download/v1.3.3/Clash.Verge_1.3.3_x64-setup.exe" style="text-decoration:none">
+            <span class="Hyperlink">Github链接（推荐）</span>
+        </a>
+        <span></span>
+        <span class="Hyperlink">如果无法访问github，点我下载</span>
+    </p>
+    <p>
+        <span>MacOS：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <a href="https://github.com/zzzgydi/clash-verge/releases/download/v1.3.3/Clash.Verge_1.3.3_x64.dmg" style="text-decoration:none">
+            <span class="Hyperlink">Github链接（推荐）</span>
+        </a>
+        <span></span>
+        <span class="Hyperlink">如果无法访问github，点我下载</span>
+    </p>
+    <p>
+        <span>Linux：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请Linux用户直接进入Clash Verde的release界面下载适合自己系统的安装包，或自行编译</span>
+    </p>
+    <p>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <a href="https://github.com/zzzgydi/clash-verge/releases/tag/v1.3.3" style="text-decoration:none">
+            <span class="Hyperlink">Github release地址</span>
+        </a>
+    </p>
+    <h2>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">第二步：获取节点</span>
+    </h2>
+    <p>
+        <span>按下图操作，在用户界面中找到“我的账号”， 在服务器一栏中选择要使用的节点，复制节点链接</span>
+    </p>
+    <p>
+        <img src="{{ url_for('static', filename='images/getVmess.png') }}" width="600" height="450" alt="getVmess" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+    </p>
+    <h2>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">第三步：将节点转换成</span>
+        <span style="font-weight:normal; font-style:normal">clash</span>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">订阅</span>
+    </h2>
+    <p>
+        <span>打开转换工具</span>
+        <a href="subconverter.speedupvpn.com" style="text-decoration:none">
+            <span class="Hyperlink">subconverter.speedupvpn.com</span>
+        </a>
+        <span>，并按下图操作</span>
+    </p>
+    <p>
+        <img src="{{ url_for('static', filename='images/convertToClashSubscribe.png') }}" width="600" height="250" alt="convertToClashSubscribe" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+    </p>
+    <h2>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">第四步：将节点导入客户端</span>
+    </h2>
+    <p>
+        <span>以MacOS系统为例，打开clash verge客户端，在配置中粘贴刚才转换工具生成的链接，点击导入即可导入节点</span>
+    </p>
+    <p>
+        <img src="{{ url_for('static', filename='images/clashVergeimport.png') }}" width="550" height="400" alt="clashVergeimport" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+    </p>
+    <h2>
+        <span style="font-family:Calibri; font-weight:normal; font-style:normal">第五步，启动代理并测试</span>
+    </h2>
+    <p>
+        <span>可以在设置中找到代理开关，打开开关，访问</span>
+        <a href="google.com" style="text-decoration:none">
+            <span class="Hyperlink">google.com</span>
+        </a>
+        <span>等网站，测试是否成功代理</span>
+    </p>
+    <p>
+        <img src="{{ url_for('static', filename='images/clashVergeSwitch.png') }}" width="550" height="400" alt="clashVergeSwitch" style="-aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline"/>
+    </p>
+    <p>
+        <span>对于MacOS系统，屏幕最上方的菜单会显示小猫图标，上面有系统代理开关的快捷键</span>
+    </p>
+    <p>
+        <span>对于Windows系统，可以在右下角托盘处找到小猫图标</span>
+    </p>
+</div>
+{% endblock %}

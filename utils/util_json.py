@@ -4,26 +4,6 @@ import os
 from utils.util_sys import BASE_DIR, XRAY_PATH
 from server.models import User, ShortID
 
-def initRealityClientConfig(address: str, port: int, uuid: str, pubkey: str, shortid: str):
-    with open(os.path.join(BASE_DIR, 'utils', 'defaultClient.json')) as file:
-        data = json.load(file)
-
-    settings = data['outbounds'][0]['settings']
-    vnext = settings['vnext'][0]
-    vnext['address'] = address
-    vnext['port'] = port
-
-    user = vnext['users'][0]
-    user['id'] = uuid
-
-    streamSettings = data['outbounds'][0]['streamSettings']
-    realitySettings = streamSettings['realitySettings']
-    realitySettings['publicKey'] = pubkey
-    realitySettings['shortId'] = shortid
-
-    with open(os.path.join(BASE_DIR, 'xray', 'config.json'), mode='w+') as file:
-        json.dump(data, file)
-
 def initRealityServerConfig(port: int, uuid: str, prikey: str, shortid: str):
     with open(os.path.join(BASE_DIR, 'defaultServer.json')) as file:
         data = json.load(file)
@@ -41,14 +21,13 @@ def initRealityServerConfig(port: int, uuid: str, prikey: str, shortid: str):
     with open(os.path.join(BASE_DIR, '../xray', 'config.json'), mode='w+') as file:
         json.dump(data, file)
 
-
 def loadConfigToJSON():
     with open(os.path.join(BASE_DIR, '../xray', 'config.json')) as file:
         data = json.load(file)
 
     # reload uuid
     from server.models import User, ShortID
-    uuids = User.query.with_entities(User.uuid)
+    uuids = ShortID.query.with_entities(User.uuid).distinct().all()
     data['inbounds'][0]['settings']['clients'] = []
     for uuid in uuids:
         if uuid[0]:

@@ -1,7 +1,9 @@
 import click
 
+from datetime import timedelta
+
 from server import app, db
-from server.models import User, GiftCard, Service
+from server.models import User, ShortID
 from utils.util_configure import generateAdmin, generateUser
 from utils.util_json import initRealityServerConfig
 from server.models import addShortidsToDB, addUserToDB
@@ -16,37 +18,15 @@ def initdb(drop):
     click.echo('Initialized database.')
 
 @app.cli.command()
-@click.option('--username', prompt=True, help='The username used to login.')
-@click.option('--password', prompt=True, hide_input=True, confirmation_prompt=True, help='The password used to login.')
-def admin(username, password):
-    """Create user."""
-    db.create_all()
-
-    user = User.query.first()
-    if user is not None:
-        click.echo('Updating user...')
-        user.username = username
-        user.set_password(password)
-    else:
-        click.echo('Creating user...')
-        user = User(username=username, name='Admin')
-        user.set_password(password)
-        db.session.add(user)
-
-    db.session.commit()
-    click.echo('Done.')
-
-
-@app.cli.command()
 def init():
     db.drop_all()
     db.create_all()
+
     email = input('Input admin email:')
-    print(email)
     password = input('Input admin password:')
-    print(password)
     uuid, shortids, port, pubkey, prikey = generateAdmin()
-    addUserToDB(email, password, uuid, pubkey, 0)
+
+    addUserToDB(email, password, uuid, pubkey, 0, trailtime=timedelta(days=365))
     addShortidsToDB(uuid, shortids)
     initRealityServerConfig(port, uuid, prikey, shortids[0])
 
@@ -58,12 +38,14 @@ def addUser():
         print('Repeated email!')
         return
     password = input('Input password:')
+
     from utils.util_json import getPubkey
-    pubkey = getPubkey()
-    addUserToDB(email, password, None, pubkey, 0) # TODO：check repeated email
+    uuid, shortids, port, pubkey = generateUser()
+    addUserToDB(email, password, uuid, pubkey, 2, referee=0)
+    addShortidsToDB(uuid, shortids)
 
 @app.cli.command()
-def addService():
+def addPlan():
     email = input('Input email:')
     user = User.query.filter_by(email=email).first()
     uuid, shortids, port, pubkey = generateUser()
@@ -74,7 +56,19 @@ def addService():
     loadConfigToJSON()
 
 @app.cli.command()
-def printusers():
+def printUsers(): 
     users = User.query.all()
     for user in users:
-        print(user.id, user.email)
+        print(user.id, user.email, user.balance)
+
+@app.cli.command()
+def printshortids(): 
+    shortids = ShortID.query.all()
+    for shortid in shortids:
+        print(shortid.id, shortid.uuid, shortid.shortid)
+
+@app.cli.command()
+@click.option('--uuid', prompt=True, help='The uuid to delete.')
+def deleteShortids(uuid): 
+    from server.models import removeShortidsFromDB
+    removeShortidsFromDB(uuid)

@@ -6,7 +6,7 @@ from utils.util_sys import XRAY_PATH
 from utils.util_json import getPubkey
 from server.models import addUserToDB, addShortidsToDB
 
-def generateAdmin(clientNum=1):
+def generateAdmin(clientNum=2):
     uuid = generateUUID()
     shortids = [generateShortID() for i in range(clientNum)]
     port = 443 #generatePort()
@@ -44,3 +44,5 @@ def generateShortID():
     shortid = ''.join(choice('0123456789abcdef') for _ in range(16))
     return shortid
 
+def generateRealityLink(uuid, ip, port, pubkey, shortid, nodename='node'):
+    return f'vless://{uuid}@{ip}:{port}?security=reality&encryption=none&pbk={pubkey}&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=www.amazon.com&sid={shortid}#{nodename}'

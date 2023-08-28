@@ -22,11 +22,11 @@
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('tutorials') }}">Tutorials</a></li>
             {% if current_user.is_authenticated %}
-            <li><a href="{{ url_for('settings') }}">Settings</a></li>
+            <li><a href="{{ url_for('settingsPage') }}">Settings</a></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('loginPage') }}">Login</a></li>
+            <li><a href="{{ url_for('registerPage') }}">Register</a></li>
             {% endif %}
         </ul>
     </nav>

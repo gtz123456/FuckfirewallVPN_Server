@@ -42,7 +42,7 @@ from utils.util_sys import BASE_DIR
 from server import views, errors, commands
 import server.api
 
-if sys.argv[1] == 'run':
+if sys.argv[0] != 'flask' or sys.argv[1] == 'run':
     print('Turning on xray-core')
     from utils.util_sys import xrayOn
     app.xrayProcess = xrayOn()

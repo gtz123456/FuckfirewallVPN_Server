@@ -35,7 +35,7 @@ class Supervisor():
 
     def startPendingTask(self):
         while True:
-            print('checking pending tasks: ', len(self.scheduledTasks), 'tasks pending')
+            #print('checking pending tasks: ', len(self.scheduledTasks), 'tasks pending')
             self.lock.acquire()
             while self.scheduledTasks and self.scheduledTasks[0][0] <= datetime.utcnow():
                 task = heapq.heappop(self.scheduledTasks)

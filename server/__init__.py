@@ -18,6 +18,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev')
 app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(os.path.dirname(app.root_path), os.getenv('DATABASE_FILE', 'data.db'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# solve cross origin problem
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 db = SQLAlchemy(app)
@@ -41,14 +42,16 @@ def inject_user():
     return dict(user=user)
 
 from utils.util_sys import BASE_DIR
+from server import commands
+# from server import views, errors, commands 
+# remove this to transfer to api
 
-from server import views, errors, commands
 import server.api
 
 if sys.argv[0] != 'flask' or sys.argv[1] == 'run':
     print('Turning on xray-core')
     from utils.util_sys import xrayOn
     app.xrayProcess = xrayOn()
-
+    print("pid", app.xrayProcess.pid)
     from utils.util_supervisor import Supervisor
     supervisor = Supervisor(app)

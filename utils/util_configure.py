@@ -9,19 +9,19 @@ from server.models import addUserToDB, addShortidsToDB
 def generateAdmin(clientNum=2):
     uuid = generateUUID()
     shortids = [generateShortID() for i in range(clientNum)]
-    port = 443 #generatePort()
+    port = generatePort()
     pubkey, prikey = generateKey()
     return uuid, shortids, port, pubkey, prikey
 
 def generateUser(clientNum=1):
     uuid = generateUUID()
     shortids = [generateShortID() for i in range(clientNum)]
-    port = 443 #generatePort()
+    port = generatePort()
     pubkey = getPubkey()
     return uuid, shortids, port, pubkey
 
 def generatePort():
-    port = randint(10000, 30000) #TODO:check repeated
+    port = 8888# randint(10000, 30000) #TODO:check repeated
     return port
 
 def generateUUID():

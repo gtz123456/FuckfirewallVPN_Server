@@ -1,0 +1,7 @@
+docker run -itd \
+-p 443:443
+--name flask \
+--network flask-nginx \
+62c9232820b9
+
+docker run -itd --name nginx -p 80:80 -p 8000:8000 --network flask-nginx fec622ef9fe9

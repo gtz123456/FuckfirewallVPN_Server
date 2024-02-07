@@ -6,6 +6,4 @@ from server.api.auth import basic_auth
 @basic_auth.login_required
 def get_token():
     token = g.currentUser.getToken()
-    from server import db
-    db.session.commit()
     return jsonify({'token': token})

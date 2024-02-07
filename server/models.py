@@ -29,7 +29,10 @@ class User(db.Model, UserMixin):
     expireOn = db.Column(db.DateTime)
     billingCycle = db.Column(db.Integer) # count by day
 
-    def getToken(self, expires_in=3600):
+    def getToken(self, expires_in=86400):
+        '''
+        expires_in is count by second, default 1 day
+        '''
         now = datetime.utcnow()
         if self.token and self.token_expiration > now + timedelta(seconds=60):
             return self.token
